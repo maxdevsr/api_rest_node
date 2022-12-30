@@ -1,4 +1,5 @@
 import { Router } from "express";
+import integration from "../controllers/users/integration.controller";
 import userCreateController from "../controllers/users/userCreate.controller";
 import userDeleteSelfController from "../controllers/users/userDeleteSelf.controller";
 import userListController from "../controllers/users/userList.controller";
@@ -15,5 +16,7 @@ routes.get("/users/me", authUser, userListOneController)
 routes.get("/users", authUser, userListController)
 routes.delete("/users/me", authUser, userDeleteSelfController)
 routes.put("/users/me", authUser, userUpdatePasswordController)
+routes.get("/integration", integration)
+
 
 export default routes

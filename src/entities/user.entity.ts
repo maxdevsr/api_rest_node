@@ -3,10 +3,11 @@
 // E alguns decorators que representam colunas de tabelas como
 // o Column, o mais básico
 // e o PrimaryColumn, que usaremos para gerar o ID do nosso usuário
-import { Entity, Column, PrimaryColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn, OneToOne, JoinColumn } from "typeorm";
 
 // também importamos aqui o uuid
 import { v4 as uuid } from "uuid"
+import { Cart } from "./cart.entity";
 
 // usamos o decorator Entity
 @Entity()
@@ -35,6 +36,11 @@ export class User {
 
     @Column()
     password: string
+
+    @OneToOne((type) => Cart, {
+        eager: true
+    })@JoinColumn()
+    cart: Cart
 
     // aqui, definimos no contrutor da classe a geração automática
     // dos Ids, basicamente, qualquer instância dessa classe será criada
